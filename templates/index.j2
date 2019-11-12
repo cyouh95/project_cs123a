@@ -1,0 +1,73 @@
+<!doctype html>
+
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+        var data = '{{ data }}';
+    </script>
+    <script type="text/javascript" src="/static/js/script.js" crossorigin=""></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+</head>
+
+<body>
+    <div id="main">
+        <div id="graphic">
+            <div id="dendrogram"></div>
+            <div id="controls">
+                <div>
+                    <div class="button {{ 'active' if tab == 'input' else '' }}" data-tab="input">Input Distance Matrix</div>
+                    <div class="button {{ 'active' if tab == 'upload' else '' }}" data-tab="upload">Upload CSV File</div>
+                </div>
+
+                <div id="input" class="tab {{ 'active' if tab == 'input' else '' }}">
+                    <h4>Enter tab delimited distance matrix</h4>
+                    <form method="post" action="{{ url_for('input_data', input_type='input') }}" enctype="multipart/form-data">
+                        <p>
+                            <textarea name="text" rows="8" cols="50"></textarea>
+                        </p>
+                        <p>
+                            <input id="submit" type="submit" value="Submit">
+                        </p>
+                    </form>
+                </div>
+
+                <div id="upload" class="tab {{ 'active' if tab == 'upload' else '' }}">
+                    <h4>Select CSV file to upload</h4>
+                    <p>
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <ul class = "flashes">
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                    </p>
+                    <form method="post" action="{{ url_for('input_data', input_type='upload') }}" enctype="multipart/form-data">
+                        <p>
+                            <input type="file" name="file" autocomplete="off" required>
+                        </p>
+                        <p>
+                            <input type="submit" value="Submit">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="info">
+            <ol>
+                <li>Use <a href="https://www.ncbi.nlm.nih.gov/refseq/" target="_blank">RefSeq</a> and <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome" target="_blank">BLAST</a> to identify and collect your sequences of interest.</li>
+                <li>Use <a href="https://www.ebi.ac.uk/Tools/msa/clustalo/" target="_blank">Clustal Omega</a> to align the sequences.</li>
+                <li>Use <a href="http://bar.utoronto.ca/webphylip/" target="_blank">WebPhylip</a> to generate the distance matrix.</li>
+                <li>Input the generated distance matrix (tab-delimited) or upload a CSV file to generate tree.
+                    <ul>
+                        <li>Download sample CSV file <a href="/static/data/sample.csv" download>here</a>.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>

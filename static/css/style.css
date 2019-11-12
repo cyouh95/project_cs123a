@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+body {
+  font-family: Raleway, sans-serif;
+}
+
+#main {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#graphic, #info {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#graphic {
+  width: 800px;
+  height: 400px;
+}
+
+#info {
+  width: 350px;
+  border: solid 1px #485F6E;
+  background-color: #eee;
+}
+
+#info ol {
+  padding-right: 20px;
+}
+
+#info li {
+  padding: 10px 0;
+}
+
+#info ul {
+  padding-left: 20px;
+}
+
+#controls {
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-block;
+  padding: 5px;
+  background-color: #eee;
+  color: black;
+  transition: color 0.2s ease;
+  transition-property: background-color, color;
+  cursor: pointer;
+}
+
+.button.active{
+  background-color: #485F6E;
+  color: white;
+}
+
+.tab {
+  display: none;
+  padding: 10px 0;
+}
+
+.tab.active {
+  display: block;
+}
+
+.tab h4 {
+  margin: 0;
+}
+
+.flashes li {
+  color: red;
+  font-size: 12px;
+}
+
+svg text {
+  font-size: 14px;
+}
+
+.axis text {
+  font-size: 10px
+}
+
+.axis path {
+  opacity: 0;
+}
+
+circle {
+  fill: white;
+  stroke: #485F6E;
+  stroke-width: 2;
+}
+
+.unavailable-icon {
+  font-family: FontAwesome;
+  font-size: 170px;
+  fill: #485F6E;
+  opacity: 0.5;
+  text-anchor: middle;
+}
+
+.unavailable-text {
+  text-anchor: middle;
+}

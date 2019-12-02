@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, send_file
 import create_dendrogram
 import io
 import os
@@ -46,6 +46,11 @@ def input_data():
         else:
             flash('Allowed file type: CSV')
             return render_template('index.j2', data=None, tab=input_type)
+
+
+@app.route('/favicon.ico')
+def send_favicon():
+    return send_file('favicon.ico')
 
 
 if __name__ == '__main__':
